@@ -1,0 +1,24 @@
+<div class="p-d-flex p-jc-center p-mt-5">
+  <p-card header="User Registration Form" styleClass="p-shadow-4" [style]="{ width: '400px' }">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="p-field p-mb-3">
+        <label for="name">Name</label>
+        <input id="name" pInputText formControlName="name" placeholder="Enter your name" class="p-inputtext-sm w-full" />
+      </div>
+
+      <div class="p-field p-mb-3">
+        <label for="email">Email</label>
+        <input id="email" pInputText formControlName="email" placeholder="Enter your email" class="p-inputtext-sm w-full" />
+      </div>
+
+      <div class="p-field p-mb-3">
+        <label for="gender">Gender</label>
+        <p-dropdown [options]="genders" formControlName="gender" placeholder="Select gender" optionLabel="label" *ngFor="let gender of genders"></p-dropdown>
+      </div>
+
+      <div class="p-field p-mt-4">
+        <button pButton type="submit" label="Submit" icon="pi pi-check" class="p-button-rounded w-full"></button>
+      </div>
+    </form>
+  </p-card>
+</div>
