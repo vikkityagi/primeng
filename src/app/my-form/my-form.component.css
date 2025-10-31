@@ -1,6 +1,58 @@
-.w-full {
+.container{
+    max-width: 600px;
+    margin: auto;
+}
+
+.header {
+  background-color: navy;    /* navy blue */
+  color: white;              /* white text */
+  font-weight: bold;
+  padding: 0.02rem;
+  border-radius: 6px 6px 0 0;
+  margin-bottom: 1rem;
+}
+
+.header * {
+  color: white !important;
+}
+
+.card{
+  width: 100%;
+  /* display: flex; */
+  /* gap: 3px; */
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+}
+
+.field{
+  margin-right: 1px;
   width: 100%;
 }
-.p-card {
-  padding: 1rem;
+
+.row{
+  display: flex;
+  gap: 10px;
+  flex-direction: row ;
+}
+
+.inputtext{
+  width: 95%;
+  
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+
+.p-element-fullwidth {
+    width: 100%;
+}
+.p-element-fullwidth .p-dropdown { /* Target the inner PrimeNG element */
+    width: 100%; 
 }

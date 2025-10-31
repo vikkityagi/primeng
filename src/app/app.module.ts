@@ -11,6 +11,10 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CheckboxModule } from 'primeng/checkbox';
+import { CalendarModule } from 'primeng/calendar';
+
 import { MessageService } from 'primeng/api';
 
 @NgModule({
@@ -29,7 +33,11 @@ import { MessageService } from 'primeng/api';
     ButtonModule,
     DropdownModule,
     CardModule,
-    ToastModule
+    ToastModule,
+    BrowserAnimationsModule,
+    CheckboxModule,
+    CalendarModule
+    
     
   ],
   providers: [],

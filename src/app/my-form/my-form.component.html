@@ -1,24 +1,172 @@
-<div class="p-d-flex p-jc-center p-mt-5">
-  <p-card header="User Registration Form" styleClass="p-shadow-4" [style]="{ width: '400px' }">
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <div class="p-field p-mb-3">
-        <label for="name">Name</label>
-        <input id="name" pInputText formControlName="name" placeholder="Enter your name" class="p-inputtext-sm w-full" />
+<!-- <div class="container"> -->
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form-group">
+  <p-card>
+    <div class="header">
+      <h2 class="text-center">Contact Information</h2>
+    </div>
+    <div class="row">
+
+      <div class="field">
+        <label for="name" class="w-5rem">Name</label>
+        <input id="name" pInputText formControlName="name" placeholder="Enter your name" class="inputtext" required />
+        <p class="error" *ngIf="userForm.get('name')?.touched && userForm.get('name')?.hasError('required')">
+          Name is required
+        </p>
       </div>
 
-      <div class="p-field p-mb-3">
-        <label for="email">Email</label>
-        <input id="email" pInputText formControlName="email" placeholder="Enter your email" class="p-inputtext-sm w-full" />
+      <div class="field">
+        <label for="email" class="w-5rem">Email</label>
+        <input id="email" pInputText formControlName="email" placeholder="Enter your email" class="inputtext" />
+        <p class="error" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.hasError('required')">
+          Email is required
+        </p>
+        <p class="error" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.hasError('email')">
+          Invalid email format
+        </p>
       </div>
 
-      <div class="p-field p-mb-3">
-        <label for="gender">Gender</label>
-        <p-dropdown [options]="genders" formControlName="gender" placeholder="Select gender" optionLabel="label" *ngFor="let gender of genders"></p-dropdown>
+      <div class="field">
+        <label for="gender" class="w-5rem">Gender</label>
+        <p-dropdown [options]="genders" formControlName="gender" placeholder="Select gender" optionValue="value"
+          styleClass="w-full">
+        </p-dropdown>
+        <p class="error" *ngIf="userForm.get('gender')?.touched && userForm.get('gender')?.hasError('required')">
+          Gender is required
+        </p>
       </div>
 
-      <div class="p-field p-mt-4">
-        <button pButton type="submit" label="Submit" icon="pi pi-check" class="p-button-rounded w-full"></button>
+    </div>
+
+    <div class="row">
+
+      <div class="field">
+        <label for="address" class="w-5rem">Address</label>
+        <textarea id="address" pInputTextarea formControlName="address" placeholder="Enter your address" rows="4"
+          cols="30" class="inputtext">
+  </textarea>
+        <p class="error" *ngIf="userForm.get('address')?.touched && userForm.get('address')?.hasError('required')">
+          Address is required
+        </p>
       </div>
-    </form>
+
+
+      <div class="field">
+        <label for="dob" class="w-5rem">DOB</label>
+        <p-calendar id="dob" formControlName="dob" placeholder="Select your DOB" dateFormat="dd/mm/yy" [showIcon]="true"
+          [maxDate]="maxDate" styleClass="w-full">
+        </p-calendar>
+        <p class="error" *ngIf="userForm.get('dob')?.touched && userForm.get('dob')?.hasError('required')">
+          Date of Birth is required
+        </p>
+      </div>
+
+
+      <div class="field">
+        <label class="block mb-2 font-semibold">Select Courses</label>
+
+        <div class="flex flex-wrap gap-4">
+          <div *ngFor="let course of courses" class="flex align-items-center">
+            <p-checkbox [value]="course.value" formControlName="course" [inputId]="course.value">
+            </p-checkbox>
+            <label [for]="course.value" class="ml-2">{{ course.label }}</label>
+          </div>
+
+
+        </div>
+        <p class="error" *ngIf="userForm.get('course')?.touched && userForm.get('course')?.hasError('required')">
+          Please select at least one course
+        </p>
+
+      </div>
+
+
+
+    </div>
+
   </p-card>
-</div>
+
+  <p-card class="mt-4">
+    <div class="header">
+      <h2 class="text-center">Father's Contact Information</h2>
+    </div>
+
+    <div class="row">
+
+      <div class="field">
+        <label for="fatherName" class="w-5rem">Father's Name</label>
+        <input id="fatherName" pInputText formControlName="fatherName" placeholder="Enter your father's name"
+          class="inputtext" required />
+        <p class="error"
+          *ngIf="userForm.get('fatherName')?.touched && userForm.get('fatherName')?.hasError('required')">
+          Father's Name is required
+        </p>
+      </div>
+
+      <div class="field">
+        <label for="fatherEmail" class="w-5rem">Father Email</label>
+        <input id="fatherEmail" pInputText formControlName="fatherEmail" placeholder="Enter your father's email"
+          class="inputtext" />
+        <p class="error"
+          *ngIf="userForm.get('fatherEmail')?.touched && userForm.get('fatherEmail')?.hasError('required')">
+          Father's Email is required
+        </p>
+        <p class="error" *ngIf="userForm.get('fatherEmail')?.touched && userForm.get('fatherEmail')?.hasError('email')">
+          Invalid email format
+        </p>
+      </div>
+
+      <div class="field">
+        <label for="fatherGender" class="w-5rem">Father Gender</label>
+        <p-dropdown [options]="fatherGenders" formControlName="fatherGender" placeholder="Select gender"
+          optionValue="value" styleClass="w-full">
+        </p-dropdown>
+        <p class="error"
+          *ngIf="userForm.get('fatherGender')?.touched && userForm.get('fatherGender')?.hasError('required')">
+          Father's Gender is required
+        </p>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="field">
+        <label for="fatherAddress" class="w-5rem">Father Address</label>
+        <textarea id="fatherAddress" pInputTextarea formControlName="fatherAddress"
+          placeholder="Enter your father's address" rows="4" cols="30" class="inputtext">
+  </textarea>
+        <p class="error"
+          *ngIf="userForm.get('fatherAddress')?.touched && userForm.get('fatherAddress')?.hasError('required')">
+          Father's Address is required
+        </p>
+      </div>
+
+
+      <div class="field">
+        <label for="fatherDob" class="w-5rem">Father DOB</label>
+        <p-calendar id="fatherDob" formControlName="fatherDob" placeholder="Select your father's DOB"
+          dateFormat="dd/mm/yy" [showIcon]="true" [maxDate]="maxDate" styleClass="w-full">
+        </p-calendar>
+        <p class="error" *ngIf="userForm.get('fatherDob')?.touched && userForm.get('fatherDob')?.hasError('required')">
+          Father's Date of Birth is required
+        </p>
+      </div>
+
+
+
+
+
+
+    </div>
+
+    <div class="row">
+      <div class="field mt-4" style="text-align: center;">
+        <button pButton type="submit" label="Submit" icon="pi pi-check" class="p-button-rounded"
+          style="width: 20%;"></button>
+      </div>
+    </div>
+
+  </p-card>
+</form>
+<!-- </div> -->
